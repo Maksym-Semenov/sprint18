@@ -45,6 +45,7 @@ namespace TaskAuthenticationAuthorization.Controllers
         }
 
         // GET: SuperMarkets/Create
+        [Authorize(Roles = "admin")]
         public IActionResult Create()
         {
             return View();
