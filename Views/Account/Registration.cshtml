@@ -1,0 +1,33 @@
+﻿@model TaskAuthenticationAuthorization.Models.RegistrationViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Registration";
+}
+
+<h2>Log in</h2>
+
+<form asp-action="Registration" asp-controller="Account" asp-anti-fogerty="true">
+    <div class="validation" asp-validation-summary="ModelOnly" />
+    <div>
+        <div class="form-group">
+            <label asp-for="Email">Enter Email</label>
+            <input type="text" asp-for="Email" />
+            <span asp-validation-for="Email" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Password">Enter Password</label>
+            <input asp-for="Password" />
+            <span asp-validation-for="Password" />
+        </div>
+         <div class="form-group">
+        <label asp-for="ConfirmPassword">Confirm Password</label>
+        <input asp-for="ConfirmPassword" />
+        <span asp-validation-for="ConfirmPassword" />
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Registration" />
+        </div>
+    </div>
+</form>
+
+
