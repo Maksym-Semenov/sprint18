@@ -40,7 +40,8 @@ namespace TaskAuthenticationAuthorization.Controllers
                 }
                 ModelState.AddModelError("", "Incorrect login and/or password");
             }
-            return View(model);
+            return RedirectToAction("Logout", "Account");
+            /*return View(model);*/
         }
         [HttpGet]
         public ActionResult Registration()
