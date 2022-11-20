@@ -86,7 +86,6 @@ namespace TaskAuthenticationAuthorization.Controllers
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Index", "Home");
-            /*return RedirectToAction("Login", "Account");*/
         }
 
 
