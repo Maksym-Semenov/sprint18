@@ -40,8 +40,10 @@ namespace TaskAuthenticationAuthorization.Controllers
                 }
                 ModelState.AddModelError("", "Incorrect login and/or password");
             }
-            return View(model);
+            return RedirectToAction("Logout", "Account");
+            /*return View(model);*/
         }
+
         [HttpGet]
         public ActionResult Registration()
         {
@@ -79,10 +81,11 @@ namespace TaskAuthenticationAuthorization.Controllers
             ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
         }
+
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("Login", "Account");
+            return RedirectToAction("Index", "Home");
         }
 
 
