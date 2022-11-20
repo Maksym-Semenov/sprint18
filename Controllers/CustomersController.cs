@@ -11,7 +11,7 @@ using TaskAuthenticationAuthorization.Models;
 
 namespace TaskAuthenticationAuthorization.Controllers
 {
-    [Authorize(Roles = "admin")]
+    
     public class CustomersController : Controller
     {
         private readonly ShoppingContext _context;
@@ -22,7 +22,7 @@ namespace TaskAuthenticationAuthorization.Controllers
         }
 
         // GET: Customers
-        
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
            

@@ -21,8 +21,17 @@ namespace TaskAuthenticationAuthorization.Controllers
         // GET: Orders
         public async Task<IActionResult> Index()
         {
-            var shoppingContext = _context.Orders.Include(o => o.Customer).Include(o => o.SuperMarket);
-            return View(await shoppingContext.ToListAsync());
+            if (User.IsInRole("admin"))
+            {
+                var ordersForAdmin = _context.Orders.Include(o => o.Customer).Include(o => o.SuperMarket);
+                return View(await ordersForAdmin.ToListAsync());
+            }
+            else
+            {
+                var ordersForBuyer = await _context.Orders.Include(o => o.Customer)
+                    .Where(x => x.Customer.User.Email == User.Identity.Name).Include(o => o.SuperMarket).ToListAsync();
+                return View(ordersForBuyer);
+            }
         }
 
         // GET: Orders/Details/5
